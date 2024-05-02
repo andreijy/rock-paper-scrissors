@@ -1,47 +1,58 @@
-console.log('Hello world!');
-
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  // your code here!
-
   let humanChoiceLowerCase = '';
-  let computerChoiceLowerCase = computerChoice.toLowerCase();
+  let computerChoiceLowerCase = '';
 
   if (typeof humanChoice == 'string') {
     humanChoiceLowerCase = humanChoice.toLowerCase();
   }
+  if (typeof computerChoice == 'string') {
+    computerChoiceLowerCase = computerChoice.toLowerCase();
+  }
 
   if (humanChoiceLowerCase == 'rock') {
-    if (computerChoiceLowerCase == 'scissors') {
-      console.log('You win! Rock beats Scissors');
-      humanScore++;
-    } else if (computerChoiceLowerCase == 'paper') {
-      console.log('You lose! Paper beats Rock');
-      computerScore++;
-    } else if (computerChoiceLowerCase == 'rock') {
-      console.log('Tie! Rock against Rock');
+    switch (computerChoiceLowerCase) {
+      case 'scissors':
+        console.log('You win! Rock beats Scissors');
+        humanScore++;
+        break;
+      case 'paper':
+        console.log('You lose! Paper beats Rock');
+        computerScore++;
+        break;
+      case 'rock':
+        console.log('Tie! Rock against Rock');
+        break;
     }
   } else if (humanChoiceLowerCase == 'paper') {
-    if (computerChoiceLowerCase == 'rock') {
-      console.log('You win! Paper beats Rock');
-      humanScore++;
-    } else if (computerChoiceLowerCase == 'scissors') {
-      console.log('You lose! Scissors beats Paper');
-      computerScore++;
-    } else if (computerChoiceLowerCase == 'paper') {
-      console.log('Tie! Paper against Paper');
+    switch (computerChoiceLowerCase) {
+      case 'rock':
+        console.log('You win! Paper beats Rock');
+        humanScore++;
+        break;
+      case 'scissors':
+        console.log('You lose! Scissors beats Paper');
+        computerScore++;
+        break;
+      case 'paper':
+        console.log('Tie! Paper against Paper');
+        break;
     }
   } else if (humanChoiceLowerCase == 'scissors') {
-    if (computerChoiceLowerCase == 'paper') {
-      console.log('You win! Scissors beats Paper');
-      humanScore++;
-    } else if (computerChoiceLowerCase == 'rock') {
-      console.log('You lose! Rock beats Scissors');
-      computerScore++;
-    } else if (computerChoiceLowerCase == 'scissors') {
-      console.log('Tie! Scissors against Scissors');
+    switch (computerChoiceLowerCase) {
+      case 'paper':
+        console.log('You win! Scissors beats Paper');
+        humanScore++;
+        break;
+      case 'rock':
+        console.log('You lose! Rock beats Scissors');
+        computerScore++;
+        break;
+      case 'scissors':
+        console.log('Tie! Scissors against Scissors');
+        break;
     }
   } else {
     console.log('Undecided outcome');
@@ -58,11 +69,20 @@ function getComputerChoice() {
   return array[Math.floor(Math.random() * 3)];
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+  humanScore = 0;
+  computerScore = 0;
 
-for (let i = 0; i < 5; i++) {
-  playRound(getHumanChoice(), getComputerChoice());
+  for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    // console.log(
+    //   `Input human: ${humanSelection} computer: ${computerSelection}`
+    // );
+    playRound(humanSelection, computerSelection);
+  }
+
+  console.log(`Final score human: ${humanScore} computer: ${computerScore}`);
 }
 
-console.log(`Final score human: ${humanScore} computer: ${computerScore}`);
+playGame();
